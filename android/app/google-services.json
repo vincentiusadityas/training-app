@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "55438340910",
+    "firebase_url": "https://trainingapp-9d61d.firebaseio.com",
+    "project_id": "trainingapp-9d61d",
+    "storage_bucket": "trainingapp-9d61d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55438340910:android:039ae5312001b8be2300bf",
+        "android_client_info": {
+          "package_name": "com.trainingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55438340910-pv1a861g2i6qnokco4p0vdq2gm10kscj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYnV-FHzxEm0DL48lT75YqxR8ZN68VtNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55438340910-pv1a861g2i6qnokco4p0vdq2gm10kscj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
