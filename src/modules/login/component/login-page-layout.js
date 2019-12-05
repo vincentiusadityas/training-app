@@ -1,72 +1,28 @@
 'use strict'
 
 import React, { Component } from 'react';
-import { Modal, ActivityIndicator, StyleSheet, 
-    Text, TextInput, View, TouchableOpacity, } from 'react-native';
+import {
+    Modal, ActivityIndicator, StyleSheet,
+    Text, TextInput, View, TouchableOpacity,
+} from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 
-export default class LoginPage extends Component {
+export default class LoginPageLayout extends Component {
     static navigationOptions = {
         title: 'Login',
     };
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            email: '',
-            password: '',
-            isLoading: false,
-        };
-    };
-
-    handleChange = (name, event) => {
-        this.setState({ [name]: event.nativeEvent.text });
-    };
-
-    onLoginPressed = () => {
-        if (this.state.email == '') {
-            this.setState({
-                emailError: true,
-            })
-        } else {
-            this.setState({
-                emailError: false,
-            })
-        }
-
-        if (this.state.password == '') {
-            this.setState({
-                passwordError: true,
-            })
-        } else {
-            this.setState({
-                passwordError: false,
-            })
-        }
-
-        if (this.state.email == '' || this.state.password == '') {
-            alert("Please fill in your email and password!")
-        } else {
-            this.setState({
-                isLoading: true,
-            })
-            auth()
-                .signInWithEmailAndPassword(this.state.email, this.state.password)
-                .then(() => this.props.navigation.navigate('App'))
-                .catch(error => {
-                    this.setState({
-                        isLoading: false,
-                    })
-                    alert(error.message.split('] ')[1]);
-                })
-        }
-    }
-
     render() {
-        const { isLoading } = this.state
-
+        // console.log(this.props)
+        const { 
+            errors, 
+            isLoading, 
+            handleChange, 
+            onLoginPressed, 
+            txt
+        } = this.props
+        
         return (
             <View style={styles.container}>
                 <Modal
@@ -77,39 +33,39 @@ export default class LoginPage extends Component {
                     <View style={styles.modalBackground}>
                         <View style={styles.activityIndicatorWrapper}>
                             <ActivityIndicator size='large'
-                                animating={this.state.isLoading} />
+                                animating={isLoading} />
                             <Text>Signing in ...</Text>
                         </View>
                     </View>
                 </Modal>
                 <View>
                     <Text>
-                        Email {!!this.state.emailError && (
+                        Email {!!errors.emailError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
                         style={styles.textInput}
-                        value={this.state.email}
+                        value={txt}
                         autoCapitalize='none'
-                        onChange={(event) => this.handleChange("email", event)}
+                        onChange={(event) => handleChange("email", event)}
                         placeholder='email' />
 
                     <Text>
-                        Password {!!this.state.passwordError && (
+                        Password {!!errors.passwordError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
-                        value={this.state.password}
-                        onChange={(event) => this.handleChange("password", event)}
+                        value={txt}
+                        onChange={(event) => handleChange("password", event)}
                         style={styles.textInput}
                         secureTextEntry={true}
                         placeholder='password' />
 
                     <TouchableOpacity
                         style={styles.loginButton}
-                        onPress={this.onLoginPressed} >
+                        onPress={onLoginPressed} >
 
                         <Text> Login </Text>
                     </TouchableOpacity>
@@ -118,11 +74,6 @@ export default class LoginPage extends Component {
         )
     }
 }
-
-const radio_props = [
-    { label: 'Male', value: 0 },
-    { label: 'Female', value: 1 }
-];
 
 const styles = StyleSheet.create({
     container: {

@@ -136,13 +136,13 @@ export default class MainPage extends React.Component {
                     <Text style={styles.heading2}>
                         Welcome to The Training App
                     </Text>
-                    <Image source={require('../../resources/training.png')} style={styles.image} />
+                    <Image source={require('../../../resources/training.png')} style={styles.image} />
                 </View>
                 <View style={{ flex: 1, }}>
                     <View style={{ flexDirection: 'row', }}>
                         <View style={styles.iconWrap}>
                             <TouchableOpacity onPress={this.onRequestPressed}>
-                                <Image source={require('../../resources/clipboard.png')} style={styles.icon} />
+                                <Image source={require('../../../resources/clipboard.png')} style={styles.icon} />
                             </TouchableOpacity>
                             <Text style={styles.iconText}>
                                 Request Training
@@ -151,7 +151,7 @@ export default class MainPage extends React.Component {
 
                         <View style={styles.iconWrap}>
                             <TouchableOpacity onPress={this.onListPressed}>
-                                <Image source={require('../../resources/clipboard2.png')} style={styles.icon} />
+                                <Image source={require('../../../resources/clipboard2.png')} style={styles.icon} />
                             </TouchableOpacity>
                             <Text style={styles.iconText}>
                                 List Training
@@ -161,7 +161,7 @@ export default class MainPage extends React.Component {
                     <View style={{ flexDirection: 'row', }}>
                         <View style={styles.iconWrap}>
                             <TouchableOpacity onPress={this.onProfilePressed}>
-                                <Image source={require('../../resources/avatar.png')} style={styles.icon} />
+                                <Image source={require('../../../resources/avatar.png')} style={styles.icon} />
                             </TouchableOpacity>
                             <Text style={styles.iconText}>
                                 Profile
@@ -170,7 +170,7 @@ export default class MainPage extends React.Component {
 
                         <View style={styles.iconWrap}>
                             <TouchableOpacity onPress={this.onLogoutPressed}>
-                                <Image source={require('../../resources/exit.png')} style={styles.icon} />
+                                <Image source={require('../../../resources/exit.png')} style={styles.icon} />
                             </TouchableOpacity>
                             <Text style={styles.iconText}>
                                 Logout

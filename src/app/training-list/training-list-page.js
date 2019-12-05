@@ -18,7 +18,7 @@ class ListItem extends React.PureComponent {
             <TouchableHighlight onPress={this.onPress} underlayColor='#dddddd'>
                 <View>
                     <View style={styles.rowContainer}>
-                        <Image style={styles.thumb} source={require('../../resources/logo.png')} />
+                        <Image style={styles.thumb} source={require('../../../resources/logo.png')} />
                         <View style={styles.textContainer}>
                             <Text style={styles.heading1}>Topic: {item.topic}</Text>
                             <Text style={styles.heading2}>From {item.startDate} to {item.endDate}</Text>
