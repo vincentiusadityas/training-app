@@ -7,7 +7,7 @@ import StartPage from './start/start-page-screen';
 import SignUpPage from './signup/signup-page-screen';
 import LoginPage from './login/login-page-screen';
 import ProfilePage from './profile/profile-page-screen';
-import TrainingRequestPage from './training-request/training-request-page';
+import TrainingRequestPage from './training-request/training-request-page-screen';
 import TrainingListPage from './training-list/training-list-page-screen';
 
 import authenticationReducer from '../modules/login/store/authentication-reducer'
@@ -16,6 +16,7 @@ import userReducer from '../modules/main/store/main-page-reducer'
 import profileReducer from '../modules/profile/store/profile-page-reducer'
 import requestListReducer from '../modules/training-list/store/training-list-page-reducer'
 import signupReducer from '../modules/signup/store/signup-page-reducer'
+import trainingRequestReducer from '../modules/training-request/store/training-request-page-reducer'
 
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -57,6 +58,7 @@ const appReducers = combineReducers({
   profileReducer: profileReducer,
   requestListReducer: requestListReducer,
   signupReducer: signupReducer,
+  trainingRequestReducer: trainingRequestReducer,
 })
 
 const store = createStore(appReducers, applyMiddleware(thunk))
