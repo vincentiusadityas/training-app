@@ -27,12 +27,12 @@ export const login = (email, password, navigation) => async (dispatch) => {
     auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-            navigation.navigate('App');
             dispatch(loginFinished());
+            navigation.navigate('App');
         })
         .catch(error => {
-            alert(error.message.split('] ')[1]);
             dispatch(loginError(error.message));
+            alert(error.message.split('] ')[1]);
         })
 }
 

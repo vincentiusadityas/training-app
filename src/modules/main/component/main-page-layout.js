@@ -26,7 +26,7 @@ export default class MainPageLayout extends React.Component {
                         <View style={styles.activityIndicatorWrapper}>
                             <ActivityIndicator size='large'
                                 animating={isLoading} />
-                            <Text>Registering ...</Text>
+                            <Text>Loading ...</Text>
                         </View>
                     </View>
                 </Modal>

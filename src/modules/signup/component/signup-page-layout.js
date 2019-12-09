@@ -12,139 +12,20 @@ import RadioForm from 'react-native-simple-radio-button';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-export default class SignUpPage extends Component {
-
-    static navigationOptions = {
-        title: 'Registration',
-    };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isLoading: false,
-            fullName: '',
-            address: '',
-            id: '',
-            phoneNo: '',
-            sex: 0,
-            email: '',
-            password: '',
-        };
-    };
-
-    handleChange = (name, event) => {
-        this.setState({ [name]: event.nativeEvent.text });
-    };
-
-    onSubmitPressed = () => {
-        if (this.state.fullName == '') {
-            this.setState({
-                fullNameError: true,
-            })
-        } else {
-            this.setState({
-                fullNameError: false,
-            })
-        }
-
-        if (this.state.address == '') {
-            this.setState({
-                addressError: true,
-            })
-        } else {
-            this.setState({
-                addressError: false,
-            })
-        }
-
-        if (this.state.id == '') {
-            this.setState({
-                idError: true,
-            })
-        } else {
-            this.setState({
-                idError: false,
-            })
-        }
-
-        if (this.state.phoneNo == '') {
-            this.setState({
-                phoneNoError: true,
-            })
-        } else {
-            this.setState({
-                phoneNoError: false,
-            })
-        }
-
-        if (this.state.email == '') {
-            this.setState({
-                emailError: true,
-            })
-        } else {
-            this.setState({
-                emailError: false,
-            })
-        }
-
-        if (this.state.password == '') {
-            this.setState({
-                passwordError: true,
-            })
-        } else {
-            this.setState({
-                passwordError: false,
-            })
-        }
-
-        if (this.state.fullName == '' || this.state.address == '' || this.state.id == '' ||
-            this.state.phoneNo == '' || this.state.email == '' || this.state.password == '') {
-            alert("Please fill in all required data!")
-        } else {
-            this.setState({
-                isLoading: true,
-            })
-            auth()
-                .createUserWithEmailAndPassword(this.state.email, this.state.password)
-                .then(authUser => {
-                    // Create a user in your Firebase realtime database
-                    this.addUser(authUser.user.uid);
-                })
-                .then(() => this.props.navigation.navigate('App'))
-                .catch(error => {
-                    this.setState({
-                        isLoading: false,
-                    })
-
-                    alert(error.message.split('] ')[1]);
-                })
-            // .catch(error => alert(error.message.split('] ')[1]))
-        }
-    }
-
-    addUser = (uid) => {
-        const { fullName, address, id, phoneNo, sex, email } = this.state
-
-        firestore().collection('users').doc(uid)
-            .set({
-                fullName: fullName,
-                address: address,
-                id: id,
-                phoneNo: phoneNo,
-                sex: sex,
-                email: email,
-            })
-            .then(function () {
-                console.log("Document successfully written!");
-            })
-            .catch(function (error) {
-                console.error("Error writing document: ", error);
-            });
-    }
-
+export default class SignUpPageLayout extends Component {
     render() {
-        const { isLoading } = this.state
+        const { 
+            errors, 
+            isLoading, 
+            handleChange, 
+            onSubmitPressed, 
+            fullName,
+            address,
+            id,
+            phoneNo,
+            email,
+            password
+        } = this.props
 
         return (
             <ScrollView style={styles.container}>
@@ -162,49 +43,49 @@ export default class SignUpPage extends Component {
                     </View>
                 </Modal>
                 <View>
-                    <Text>Full Name {!!this.state.fullNameError && (
+                    <Text>Full Name {!!errors.fullNameError && (
                         <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
 
                     <TextInput
                         underlineColorAndroid={'transparent'}
-                        value={this.state.fullName}
-                        onChange={(event) => this.handleChange("fullName", event)}
+                        value={fullName}
+                        onChange={(event) => handleChange("fullName", event)}
                         style={styles.textInput}
                         placeholder='full name' />
 
                     <Text>
-                        Address {!!this.state.addressError && (
+                        Address {!!errors.addressError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         multiline={true}
                         numberOfLines={4}
                         underlineColorAndroid={'transparent'}
-                        value={this.state.address}
-                        onChange={(event) => this.handleChange("address", event)}
+                        value={address}
+                        onChange={(event) => handleChange("address", event)}
                         style={styles.textArea}
                         placeholder='address' />
 
                     <Text>
-                        ID {!!this.state.idError && (
+                        ID {!!errors.idError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
-                        value={this.state.id}
-                        onChange={(event) => this.handleChange("id", event)}
+                        value={id}
+                        onChange={(event) => handleChange("id", event)}
                         style={styles.textInput}
                         placeholder='nomor KTP' />
 
                     <Text>
-                        Phone No. {!!this.state.phoneNoError && (
+                        Phone No. {!!errors.phoneNoError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
-                        value={this.state.phoneNo}
-                        onChange={(event) => this.handleChange("phoneNo", event)}
+                        value={phoneNo}
+                        onChange={(event) => handleChange("phoneNo", event)}
                         style={styles.textInput}
                         keyboardType={'number-pad'}
                         placeholder='phone number' />
@@ -219,35 +100,35 @@ export default class SignUpPage extends Component {
                         formHorizontal={true}
                         labelStyle={{ marginRight: 20 }}
                         buttonSize={10}
-                        onPress={(value) => { this.setState({ sex: value }) }} />
+                        onPress={(value) => handleChange('sex', value)} />
 
                     <Text>
-                        Email {!!this.state.emailError && (
+                        Email {!!errors.emailError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
                         style={styles.textInput}
-                        value={this.state.email}
+                        value={email}
                         autoCapitalize='none'
-                        onChange={(event) => this.handleChange("email", event)}
+                        onChange={(event) => handleChange("email", event)}
                         placeholder='email' />
 
                     <Text>
-                        Password {!!this.state.passwordError && (
+                        Password {!!errors.passwordError && (
                             <Text style={{ color: "red" }}>*required</Text>)}
                     </Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
-                        value={this.state.password}
-                        onChange={(event) => this.handleChange("password", event)}
+                        value={password}
+                        onChange={(event) => handleChange("password", event)}
                         style={styles.textInput}
                         secureTextEntry={true}
                         placeholder='password' />
 
                     <TouchableOpacity
                         style={styles.submitButton}
-                        onPress={this.onSubmitPressed} >
+                        onPress={onSubmitPressed} >
 
                         <Text> Submit </Text>
                     </TouchableOpacity>

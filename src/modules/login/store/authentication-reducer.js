@@ -41,7 +41,7 @@ export default authenticationReducer = (state = initialState, action) => {
                 isLoading: true,
             };
         case actionType.LOGOUT_FINISHED:
-            console.log("logged out")
+            console.log("logged out: ")
             return {
                 ...initialState,
             };

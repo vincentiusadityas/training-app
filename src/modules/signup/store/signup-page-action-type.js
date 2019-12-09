@@ -1,0 +1,3 @@
+export const ADD_USER_START = 'ADD_USER_START';
+export const ADD_USER_FINISH = 'ADD_USER_FINSIH';
+export const ADD_USER_ERROR = 'ADD_USER_ERROR';

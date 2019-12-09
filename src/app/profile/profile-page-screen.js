@@ -99,7 +99,6 @@ class ProfilePageScreen extends Component {
     }
 
     render() {
-        console.log(this.props)
         const {
             fullName, address, id, phoneNo, sex,
             fullNameError, addressError, idError, phoneNoError
@@ -110,7 +109,7 @@ class ProfilePageScreen extends Component {
         const {
             isLoading
         } = this.props.profileReducer
-
+        
         return (
             <ProfilePageLayout
                 errors={errors}
