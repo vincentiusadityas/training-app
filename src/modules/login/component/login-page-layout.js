@@ -14,7 +14,6 @@ export default class LoginPageLayout extends Component {
     };
 
     render() {
-        // console.log(this.props)
         const { 
             errors, 
             isLoading, 

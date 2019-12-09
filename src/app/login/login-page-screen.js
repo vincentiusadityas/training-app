@@ -47,7 +47,7 @@ class LoginPageScreen extends Component {
         if (this.state.email == '' || this.state.password == '') {
             alert("Please fill in your email and password!")
         } else {
-            await this.props.login(this.state.email, this.state.password)
+            await this.props.login(this.state.email, this.state.password, this.props.navigation)
         }
     }
 
@@ -57,7 +57,6 @@ class LoginPageScreen extends Component {
             emailError,
             passwordError
         }
-        // console.log("HEHE:", this.props)
 
         return (
             <LoginPageLayout

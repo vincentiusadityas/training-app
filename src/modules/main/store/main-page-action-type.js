@@ -1,0 +1,4 @@
+export const FETCH_USER_START = 'FETCH_USER_START'
+export const FETCH_USER_ERROR = 'FETCH_USER_ERROR'
+
+export const SET_USER_DATA = 'SET_USER_DATA'
