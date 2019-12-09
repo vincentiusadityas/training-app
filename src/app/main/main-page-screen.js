@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Alert } from 'react-native'
 
 import auth from '@react-native-firebase/auth'
-import firestore from '@react-native-firebase/firestore'
 
 import MainPageLayout from '../../modules/main/component/main-page-layout'
 import * as authentication from '../../modules/login/store/authentication-action'
