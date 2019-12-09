@@ -10,7 +10,6 @@ export default requestListReducer = (state = initialState, action) => {
     const { type, value } = action;
     switch (type) {
         case actionType.FETCH_LIST_FINSIH:
-            console.log("FINSIH: ", value)
             return {
                 ...state,
                 requestList: value,

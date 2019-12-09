@@ -18,37 +18,6 @@ class MainPageScreen extends Component {
             flexGrow: 1,
         }
     };
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         isLoading: false,
-    //         uid: auth().currentUser.uid,
-    //         fullName: '',
-    //         address: '',
-    //         id: '',
-    //         phoneNo: '',
-    //     };
-
-    //     firestore().collection('users').doc(this.state.uid)
-    //         .get()
-    //         .then((doc) => {
-    //             if (doc.exists) {
-    //                 var data = doc.data()
-    //                 this.setState({
-    //                     fullName: data.fullName,
-    //                     address: data.address,
-    //                     id: data.id,
-    //                     phoneNo: data.phoneNo,
-    //                     sex: data.sex
-    //                 })
-    //             } else {
-    //                 console.log("No such document!");
-    //             }
-    //         }).catch(function (error) {
-    //             console.log("Error getting document:", error);
-    //         });
-    // };
 
     componentDidMount() {
         this.props.fetchUser(auth().currentUser.uid)

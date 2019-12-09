@@ -133,8 +133,7 @@ class TrainingRequestPageScreen extends Component {
         } = this.state;
 
         const errors = { managerError, topicError, locationError, startDateError, endDateError, priceError }
-        console.log("START: ", startDate)
-        console.log("END: ", endDate)
+        
         return (
             <TrainingRequestPageLayout
                 isLoading={isLoading}

@@ -9,7 +9,6 @@ export default class StartPageLayout extends Component {
     };
 
     render() {
-        // console.log("B: ", this.props)
         return (
             <View style={styles.container}>
                 <Text style={styles.description}>
